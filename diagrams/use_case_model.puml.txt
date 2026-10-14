@@ -1,0 +1,32 @@
+@startuml
+left to right direction
+
+actor "Production Manager" as PM
+actor "Kitchen Worker" as KW
+actor "Stores Coordinator" as SC
+actor "Quality Checker" as QC
+actor "Customer Coordinator" as CC
+actor "Traceability Lead" as TL
+
+rectangle "Kitchen Production Management System" {
+
+    usecase "Manage Recipe Versions" as UC1
+    usecase "Maintain Ingredient Information" as UC2
+    usecase "Plan Production Batch" as UC3
+    usecase "Record Production Batch" as UC4
+    usecase "Record Ingredient Substitution" as UC5
+    usecase "Record Quality Check" as UC6
+    usecase "Maintain Order Allocation" as UC7
+    usecase "Trace Affected Orders" as UC8
+}
+
+PM -- UC1
+SC -- UC2
+PM -- UC3
+KW -- UC4
+KW -- UC5
+QC -- UC6
+CC -- UC7
+TL -- UC8
+
+@enduml

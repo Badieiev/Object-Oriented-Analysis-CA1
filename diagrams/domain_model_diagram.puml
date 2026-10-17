@@ -1,0 +1,61 @@
+@startuml
+left to right direction
+
+class Product {
+  productName
+  productType
+}
+
+class Recipe {
+  recipeName
+}
+
+class "Recipe Version" as RecipeVersion {
+  versionIdentifier
+  method
+  expectedYield
+  allergenInformation
+  packagingInstructions
+}
+
+class Ingredient {
+  ingredientName
+}
+
+class "Ingredient Batch" as IngredientBatch {
+  batchIdentifier
+  quantity
+  supplierBatchReference
+  relevantDates
+  availabilityStatus
+}
+
+class "Customer Order" as CustomerOrder {
+  orderIdentifier
+  packSize
+}
+
+class "Production Batch" as ProductionBatch {
+  batchIdentifier
+  productionTime
+  actualYield
+  observations
+  releaseStatus
+}
+
+class "Quality Check" as QualityCheck {
+  checkType
+  result
+}
+
+Product "1" -- "1" Recipe
+Recipe "1" -- "1..*" RecipeVersion
+RecipeVersion "0..*" -- "1..*" Ingredient
+RecipeVersion "1" -- "0..*" ProductionBatch
+Ingredient "1" -- "0..*" IngredientBatch
+ProductionBatch "0..*" -- "1..*" IngredientBatch
+ProductionBatch "0..*" -- "0..*" CustomerOrder
+ProductionBatch "1" -- "0..*" QualityCheck
+CustomerOrder "0..*" -- "1..*" Product
+
+@enduml
